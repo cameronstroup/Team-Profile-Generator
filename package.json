@@ -1,0 +1,28 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronstroup/Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cameronstroup/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/cameronstroup/Team-Profile-Generator#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
