@@ -1,12 +1,13 @@
 const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const path = require("path");
-const fs = require("fs");
+const Engineer = require("./lib/Engineer");
 
-let employeeQuestionArray = [];
-const whatEmployee = [
+const fs = require("fs");
+const path = require("path");
+
+let employeeArray = [];
+const roleInCompany = [
   {
     type: "list",
     name: "type",
@@ -14,36 +15,6 @@ const whatEmployee = [
     choices: ["Intern", "Manager", "Engineer"],
   },
 ];
-
-const managerQuestions = [
-  {
-    type: "input",
-    name: "name",
-    messsage: "What is the name of the Manager?",
-  },
-  {
-    type: "input",
-    name: "id",
-    message: "What is their ID Number?",
-  },
-  {
-    type: "input",
-    name: "email",
-    mesage: "What is their email?",
-  },
-  {
-    type: "input",
-    name: "office",
-    message: "What is their office number?",
-  },
-  {
-    type: "list",
-    name: "last",
-    message: "Have you input all employees?",
-    choices: ["Yes", "No"],
-  },
-];
-
 const engineerQuestions = [
   {
     type: "input",
@@ -67,7 +38,36 @@ const engineerQuestions = [
   },
   {
     type: "list",
-    name: "InputAll",
+    name: "inputAll",
+    message: "Have you input all employees?",
+    choices: ["Yes", "No"],
+  },
+];
+
+const managerQuestions = [
+  {
+    type: "input",
+    name: "name",
+    messsage: "What is the name of the Manager?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is their ID Number?",
+  },
+  {
+    type: "input",
+    name: "email",
+    mesage: "What is their email?",
+  },
+  {
+    type: "input",
+    name: "officeNumber",
+    message: "What is their office number?",
+  },
+  {
+    type: "list",
+    name: "inputAll",
     message: "Have you input all employees?",
     choices: ["Yes", "No"],
   },
@@ -96,8 +96,65 @@ const internQuestions = [
   },
   {
     type: "list",
-    name: "last",
+    name: "inputAll",
     message: "Have you input all employees?",
     choices: ["Yes", "No"],
   },
 ];
+
+function managerArray(input) {
+  let newArray = new Manager(
+    input.name,
+    input.id,
+    input.email,
+    input.officeNumber
+  );
+  employeeArray.push(newArray);
+  if (input.inputAll == "Yes") {
+    fs.writeFile("./src/createhtml.js", render(employeeArray), (err) =>
+      err ? console.log(err) : coneewsole.log("HTML Created")
+    );
+  } else {
+    init();
+  }
+}
+
+function engineerArray(input) {
+  let newArray = new Engineer(input.name, input.id, input.email, input.github);
+  employeeArray.push(newArray);
+  if (input.inputAll == "Yes") {
+    fs.writeFile("./src/createhtml.js", render(employeeArray), (err) =>
+      err ? console.log(err) : console.log("HTML Created")
+    );
+  } else {
+    init();
+  }
+}
+
+function internArray(input) {
+  let newArray = new Intern(input.name, input.id, input.email, input.school);
+  employeeArray.push(newArray);
+  if (input.inputAll == "Yes") {
+    fs.writeFile("./src/createhtml.js", render(employeeArray), (err) =>
+      err ? console.log(err) : console.log("HTML Created")
+    );
+  } else {
+    init();
+  }
+}
+
+function init() {
+  inquirer.prompt(roleInCompany).then((input) => {
+    if (input.type == "Manager") {
+      inquirer.prompt(managerQuestions).then((input) => managerArray(input));
+    } else if (input.type == "Engineer") {
+      console.log("Engineer");
+      inquirer.prompt(engineerQuestions).then((input) => engineerArray(input));
+    } else {
+      console.log("Intern");
+      inquirer.prompt(internQuestions).then((input) => internArray(input));
+    }
+  });
+}
+
+init();
