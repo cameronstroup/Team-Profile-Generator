@@ -5,6 +5,9 @@ const Engineer = require("./lib/Engineer");
 
 const fs = require("fs");
 const path = require("path");
+const DIS_DIR = path.resolve(__dirname, "dist");
+const distPath = path.join(DIS_DIR, "Team.html");
+const render = require("./src/generatefile.js");
 
 let employeeArray = [];
 const roleInCompany = [
@@ -112,7 +115,7 @@ function managerArray(input) {
   employeeArray.push(newArray);
   if (input.inputAll == "Yes") {
     fs.writeFile("./src/createhtml.js", render(employeeArray), (err) =>
-      err ? console.log(err) : coneewsole.log("HTML Created")
+      err ? console.log(err) : console.log("HTML Created")
     );
   } else {
     init();
@@ -135,9 +138,8 @@ function internArray(input) {
   let newArray = new Intern(input.name, input.id, input.email, input.school);
   employeeArray.push(newArray);
   if (input.inputAll == "Yes") {
-    fs.writeFile("./src/createhtml.js", render(employeeArray), (err) =>
-      err ? console.log(err) : console.log("HTML Created")
-    );
+    fs.mkdirSync(DIS_DIR);
+    fs.writeFileSync(distPath, render(employeeArray), "utf-8");
   } else {
     init();
   }
