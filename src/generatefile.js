@@ -3,50 +3,54 @@ const Manager = require("../lib/Manager");
 
 const generateTeam = (team) => {
   function createManagerCard(manager) {
-    return `<div class="card" style="width:500px">
-      
-        <div class="card-img-overlay">
-        <h4>${manager.getName()}</h4>
-        <h5>${manager.getRole()}</h5>
-        <p>ID:${manager.id}</p>
-        <p>Email:<a href="mailto:${manager.email}"> ${manager.email}</a></p>
-        <p>Office number: ${manager.officeNumber}</p>
-      </div>
+    return `<div class="col-4 mt-4">
+    <div class="card h-100">
+        <div class="card-header bg-success">
+            <h3>${manager.name}</h3>
+            <h4>Manager</h4>
         </div>
-      </div>
+        <div class="card-body">
+            <p class="id">ID: ${manager.id}</p>
+            <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+            <p class="office">Office Number: ${manager.officeNum}</p>
+        </div>
+    </div>
+  </div>
           
                   `;
   }
 
   function createEngineerCard(engineer) {
-    return `<div class="row col-xs-2">
-      
-      <div class="card-img-overlay">
-      <h4>${engineer.getName()}</h4>
-      <h5>${engineer.getRole()}</h5>
-      <p>ID:${engineer.id}</p>
-      <p>Email:<a href="mailto:${engineer.email}"> ${engineer.email}</a></p>
-      <p>Office number: ${engineer.github}</p>
+    return `<div class="col-4 mt-4">
+    <div class="card h-100">
+        <div class="card-header bg-success">
+            <h3>${engineer.name}</h3>
+            <h4>Engineer</h4>
+        </div>
+        <div class="card-body">
+            <p class="id">ID: ${engineer.id}</p>
+            <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
+            <p class="github">Github: <a href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a></p>
+        </div>
     </div>
-      </div>
-    </div>
-        
+</div>
                 `;
   }
 
   function createInternCard(intern) {
-    return `<div class="card" style="width:500px">
-        
-          <div class="card-img-overlay">
-          <h4>${intern.getName()}</h4>
-          <h5>${intern.getRole()}</h5>
-          <p>ID:${intern.id}</p>
-          <p>Email:<a href="mailto:${intern.email}"> ${intern.email}</a></p>
-          <p>Office number: ${intern.school}</p>
+    return `<div class="col-4 mt-4">
+    <div class="card h-100">
+        <div class="card-header bg-success">
+            <h3>${intern.name}</h3>
+            <h4>Intern</h4>
         </div>
-          </div>
+        <div class="card-body">
+            <p class="id">ID: ${intern.id}</p>
+            <p class="email">Email:<a href="mailto:${intern.email}">${intern.email}</a></p>
+            <p class="school">School: ${intern.school}</p>
         </div>
-            
+    </div>
+</div>
                     `;
   }
 
