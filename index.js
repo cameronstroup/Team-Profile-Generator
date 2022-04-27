@@ -114,9 +114,8 @@ function managerArray(input) {
   );
   employeeArray.push(newArray);
   if (input.inputAll == "Yes") {
-    fs.writeFile("./src/createhtml.js", render(employeeArray), (err) =>
-      err ? console.log(err) : console.log("HTML Created")
-    );
+    fs.mkdirSync(DIS_DIR);
+    fs.writeFileSync(distPath, render(employeeArray), "utf-8");
   } else {
     init();
   }
@@ -126,9 +125,8 @@ function engineerArray(input) {
   let newArray = new Engineer(input.name, input.id, input.email, input.github);
   employeeArray.push(newArray);
   if (input.inputAll == "Yes") {
-    fs.writeFile("./src/createhtml.js", render(employeeArray), (err) =>
-      err ? console.log(err) : console.log("HTML Created")
-    );
+    fs.mkdirSync(DIS_DIR);
+    fs.writeFileSync(distPath, render(employeeArray), "utf-8");
   } else {
     init();
   }

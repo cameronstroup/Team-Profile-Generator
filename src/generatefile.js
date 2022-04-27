@@ -19,7 +19,7 @@ const generateTeam = (team) => {
   }
 
   function createEngineerCard(engineer) {
-    return `<div class="card" style="width:500px">
+    return `<div class="row col-xs-2">
       
       <div class="card-img-overlay">
       <h4>${engineer.getName()}</h4>
@@ -51,6 +51,16 @@ const generateTeam = (team) => {
   }
 
   const html = [];
+  html.push(
+    team
+      .filter((employee) => employee.getRole() === "Intern")
+      .map((intern) => createInternCard(intern))
+  );
+  html.push(
+    team
+      .filter((employee) => employee.getRole() === "Engineer")
+      .map((engineer) => createEngineerCard(engineer))
+  );
   html.push(
     team
       .filter((employee) => employee.getRole() === "Manager")
